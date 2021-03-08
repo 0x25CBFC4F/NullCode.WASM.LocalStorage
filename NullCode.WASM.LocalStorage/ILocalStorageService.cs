@@ -44,5 +44,16 @@ namespace NullCode.WASM.LocalStorage
         /// <param name="raw">Raw string</param>
         /// <returns></returns>
         Task SetRaw(string key, string raw);
+
+        /// <summary>
+        /// Removes specific item from local storage by key name
+        /// </summary>
+        /// <param name="key">Key name</param>
+        Task Remove(string key);
+
+        /// <summary>
+        /// Removes all items from local storage.
+        /// </summary>
+        Task RemoveAll();
     }
 }

@@ -75,6 +75,19 @@ namespace NullCode.WASM.LocalStorage
             await _jsRuntime.InvokeVoidAsync("eval", $"window.localStorage.setItem(`{escapedKey}`, `{escapedJson}`)");
         }
 
+        /// <inheritdoc />
+        public async Task Remove(string key)
+        {
+            var escapedKey = Regex.Escape(key); 
+            await _jsRuntime.InvokeAsync<string>("eval", $"window.localStorage.removeItem('{escapedKey}')");
+        }
+
+        /// <inheritdoc />
+        public async Task RemoveAll()
+        {
+            await _jsRuntime.InvokeAsync<string>("eval", $"window.localStorage.clear()");
+        }
+
         /// <summary>
         /// Generates key name from class if specified name is empty.
         /// </summary>
