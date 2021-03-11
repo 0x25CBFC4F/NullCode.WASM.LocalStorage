@@ -6,7 +6,8 @@ pipeline {
             steps {
                 dotnetClean(
                     configuration: 'Release',
-                    nologo: true
+                    nologo: true,
+                    workDirectory: "src/"
                 )
             }
         }
@@ -15,7 +16,8 @@ pipeline {
             steps {
                 dotnetBuild(
                     configuration: 'Release',
-                    nologo: true
+                    nologo: true,
+                    workDirectory: "src/"
                 )
             }
         }
@@ -24,14 +26,31 @@ pipeline {
             steps {
                 dotnetPack(
                     configuration: 'Release',
-                    nologo: true
+                    nologo: true,
+                    workDirectory: "src/"
                 )
             }
         }
 
         stage('Archive artifacts') {
             steps {
-                archiveArtifacts(artifacts: "NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
+                archiveArtifacts(artifacts: "src\\NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
+            }
+        }
+
+        stage('Pushing to NuGet') {
+            when {
+                expression {
+                    params.should_push == true
+                }
+            }
+            steps {
+                dotnetNuGetPush(
+                    apiKeyId: params.nuget_api_key,
+                    noSymbols: true,
+                    skipDuplicate: false,
+                    workDirectory: "src/"
+                )
             }
         }
 
