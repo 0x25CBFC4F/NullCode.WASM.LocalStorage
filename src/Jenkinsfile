@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Cleaning project') {
+            steps {
+                sh 'dotnet clean'
+            }
+        }
+
+        stage('Building project') {
+            steps {
+                sh 'dotnet build -c Release'
+            }
+        }
+    }
+}
