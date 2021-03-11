@@ -1,4 +1,4 @@
-# NullCode.WASM.LocalStorage <img src="img/treasure.png" alt="drawing" width="25"/>
+# NullCode.WASM.LocalStorage <img src="https://static.nullcodes.xyz/nuget/NullCode.WASM.LocalStorage/icon.png" alt="drawing" width="25"/>
 
 Small library for interacting with Local Storage from Blazor WASM.
 
