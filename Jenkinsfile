@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        NUGET_API_KEY = credentials(${nuget_api_key})
+    }
+
     stages {
         stage('Cleaning project') {
             steps {
@@ -32,6 +36,21 @@ pipeline {
         stage('Archive artifacts') {
             steps {
                 archiveArtifacts(artifacts: "NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
+            }
+        }
+
+        stage('Pushing to NuGet') {
+            when {
+                expression {
+                    params.should_push == true
+                }
+            }
+            steps {
+                dotnetNuGetPush(
+                    apiKeyId: ${NUGET_API_KEY},
+                    noSymbols: true,
+                    skipDuplicate: false
+                )
             }
         }
 
