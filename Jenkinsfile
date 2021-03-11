@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NUGET_API_KEY = credentials(${nuget_api_key})
+        NUGET_API_KEY = credentials(nuget_api_key)
     }
 
     stages {
@@ -47,7 +47,7 @@ pipeline {
             }
             steps {
                 dotnetNuGetPush(
-                    apiKeyId: ${NUGET_API_KEY},
+                    apiKeyId: NUGET_API_KEY,
                     noSymbols: true,
                     skipDuplicate: false
                 )
