@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Preparing') {
             steps {
-                dir("src")
+                dir("src") {}
             }
         }
 
