@@ -1,4 +1,4 @@
-# NullCode.WASM.LocalStorage
+# NullCode.WASM.LocalStorage <img src="img/treasure.png" alt="drawing" width="25"/>
 
 Small library for interacting with Local Storage from Blazor WASM.
 
@@ -18,3 +18,11 @@ Small library for interacting with Local Storage from Blazor WASM.
 4. Newtonsoft.Json
 
 ~ Most of them should be already in your project..
+
+# Notes
+
+`.nupkg` package will be generated only on `Release` build of this library.
+
+# Credits for logo
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
