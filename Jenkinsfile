@@ -46,7 +46,7 @@ pipeline {
             }
             steps {
                 dotnetNuGetPush(
-                    apiKeyId: params.nuget_api_key,
+                    apiKeyId: params.nuget_api_key.getPlainText(),
                     noSymbols: true,
                     skipDuplicate: false,
                     workDirectory: "src/"
