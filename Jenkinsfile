@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage('Preparing') {
+            steps {
+                dir("src")
+            }
+        }
+
         stage('Cleaning project') {
             steps {
                 dotnetClean(
