@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        NUGET_API_KEY = credentials('nuget_api_key')
-    }
-
     stages {
         stage('Cleaning project') {
             steps {
@@ -47,7 +43,7 @@ pipeline {
             }
             steps {
                 dotnetNuGetPush(
-                    apiKeyId: NUGET_API_KEY,
+                    apiKeyId: params.nuget_api_key,
                     noSymbols: true,
                     skipDuplicate: false
                 )
