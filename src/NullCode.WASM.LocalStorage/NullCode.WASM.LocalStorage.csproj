@@ -7,15 +7,21 @@
     
     <PropertyGroup>
         <!-- NuGet Parameters -->
-        <PackageVersion>1.0</PackageVersion>
+        <PackageVersion>0.5</PackageVersion>
         <Title>NullCode.WASM.LocalStorage</Title>
         <Authors>0x25CBFC4F</Authors>
         <PackageProjectUrl>https://github.com/0x25CBFC4F/NullCode.WASM.LocalStorage</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/0x25CBFC4F/NullCode.WASM.LocalStorage/blob/master/LICENSE</PackageLicenseUrl>
-        <PackageIconUrl>https://static.nullcodes.xyz/nuget/NullCode.WASM.LocalStorage/icon.png</PackageIconUrl>
+        <PackageLicense>LICENSE</PackageLicense>
+        <PackageIcon>icon.png</PackageIcon>
         <RepositoryUrl>https://github.com/0x25CBFC4F/NullCode.WASM.LocalStorage</RepositoryUrl>
         <PackageTags>blazor,wasm,localstorage</PackageTags>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <!-- NuGet Additional Files -->
+        <None Include="../../img/icon.png" Visible="false" Pack="true" PackagePath="\" />
+        <None Include="../../LICENSE" Visible="false" Pack="true" PackagePath="\" />
+    </ItemGroup>
     
     <PropertyGroup Condition="$(CompileConfig) != 'DEBUG'">
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
