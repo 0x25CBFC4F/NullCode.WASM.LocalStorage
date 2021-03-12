@@ -46,7 +46,7 @@ pipeline {
             }
             steps {
                 script {
-                        def files = findFiles(glob: "src\\NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
+                        def files = findFiles(glob: "NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
 
                         if(files.length == 0) {
                             throw new Exception("Can't find .nupkg file!")
