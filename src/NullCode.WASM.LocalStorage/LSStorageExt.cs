@@ -9,7 +9,16 @@ namespace NullCode.WASM.LocalStorage
         /// </summary>
         public static void AddLocalStorageService(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<ILocalStorageService, LocalStorageService>();
+            AddLocalStorageService<LocalStorageService>(serviceCollection);
+        }
+
+        /// <summary>
+        /// This methods registers custom implementation of local storage service in Microsoft DI container.
+        /// </summary>
+        /// <typeparam name="TService">Implementation type</typeparam>
+        public static void AddLocalStorageService<TService>(this IServiceCollection serviceCollection) where TService : class, ILocalStorageService
+        {
+            serviceCollection.AddSingleton<ILocalStorageService, TService>();
         }
     }
 }

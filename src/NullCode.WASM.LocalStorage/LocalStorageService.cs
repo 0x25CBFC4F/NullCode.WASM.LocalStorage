@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 namespace NullCode.WASM.LocalStorage
 {
+    /// <inheritdoc />
     public class LocalStorageService : ILocalStorageService
     {
         private readonly IJSRuntime _jsRuntime;
@@ -18,7 +19,7 @@ namespace NullCode.WASM.LocalStorage
             _logger = logger;
         }
         
-        public async Task<T> Get<T>(string name = null) where T : class
+        public virtual async Task<T> Get<T>(string name = null) where T : class
         {
             name = CheckName(name, typeof(T));
             
@@ -40,7 +41,7 @@ namespace NullCode.WASM.LocalStorage
             }
         }
 
-        public async Task<bool> Set(string name, object obj)
+        public virtual async Task<bool> Set(string name, object obj)
         {
             name = CheckName(name, obj.GetType());
 
@@ -57,18 +58,18 @@ namespace NullCode.WASM.LocalStorage
             }
         }
         
-        public async Task<bool> Set(object obj)
+        public virtual async Task<bool> Set(object obj)
         {
             return await Set(null, obj);
         }
 
-        public async Task<string> GetRaw(string key)
+        public virtual async Task<string> GetRaw(string key)
         {
             var escapedKey = Regex.Escape(key);
             return await _jsRuntime.InvokeAsync<string>("eval", $"window.localStorage.getItem('{escapedKey}')");
         }
 
-        public async Task SetRaw(string key, string raw)
+        public virtual async Task SetRaw(string key, string raw)
         {
             var escapedKey = Regex.Escape(key);
             var escapedJson = Regex.Escape(raw);
@@ -76,16 +77,16 @@ namespace NullCode.WASM.LocalStorage
         }
 
         /// <inheritdoc />
-        public async Task Remove(string key)
+        public virtual async Task Remove(string key)
         {
             var escapedKey = Regex.Escape(key); 
             await _jsRuntime.InvokeAsync<string>("eval", $"window.localStorage.removeItem('{escapedKey}')");
         }
 
         /// <inheritdoc />
-        public async Task RemoveAll()
+        public virtual async Task RemoveAll()
         {
-            await _jsRuntime.InvokeAsync<string>("eval", $"window.localStorage.clear()");
+            await _jsRuntime.InvokeAsync<string>("eval", "window.localStorage.clear()");
         }
 
         /// <summary>
