@@ -55,5 +55,11 @@ namespace NullCode.WASM.LocalStorage
         /// Removes all items from local storage.
         /// </summary>
         Task RemoveAll();
+
+        /// <summary>
+        /// Removes specific item from local storage by type
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        Task Remove<T>() where T : class;
     }
 }
