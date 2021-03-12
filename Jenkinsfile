@@ -45,8 +45,7 @@ pipeline {
                 }
             }
             steps {
-                step {
-                    script {
+                script {
                         def files = findFiles(glob: "src\\NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
 
                         if(files.length == 0) {
@@ -60,7 +59,6 @@ pipeline {
                             workDirectory: "src/"
                         )
                     }
-                }
             }
         }
 
