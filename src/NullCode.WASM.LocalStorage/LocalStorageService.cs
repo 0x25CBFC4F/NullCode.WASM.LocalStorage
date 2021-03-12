@@ -82,6 +82,12 @@ namespace NullCode.WASM.LocalStorage
             var escapedKey = Regex.Escape(key); 
             await _jsRuntime.InvokeAsync<string>("eval", $"window.localStorage.removeItem('{escapedKey}')");
         }
+        
+        public virtual async Task Remove<T>() where T : class
+        {
+            var name = CheckName(null, typeof(T));
+            await _jsRuntime.InvokeAsync<string>("eval", $"window.localStorage.removeItem('{name}')");
+        }
 
         /// <inheritdoc />
         public virtual async Task RemoveAll()
