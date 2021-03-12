@@ -45,18 +45,22 @@ pipeline {
                 }
             }
             steps {
-                def files = findFiles(glob: "src\\NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
+                step {
+                    script {
+                        def files = findFiles(glob: "src\\NullCode.WASM.LocalStorage\\bin\\Release\\*.nupkg")
 
-                if(files.length == 0) {
-                    throw new Exception("Can't find .nupkg file!")
+                        if(files.length == 0) {
+                            throw new Exception("Can't find .nupkg file!")
+                        }
+
+                        dotnetNuGetPush(
+                            root: files[0].getPath(),
+                            apiKeyId: "nuget_api_key",
+                            skipDuplicate: false,
+                            workDirectory: "src/"
+                        )
+                    }
                 }
-
-                dotnetNuGetPush(
-                    root: files[0].getPath(),
-                    apiKeyId: "nuget_api_key",
-                    skipDuplicate: false,
-                    workDirectory: "src/"
-                )
             }
         }
 
