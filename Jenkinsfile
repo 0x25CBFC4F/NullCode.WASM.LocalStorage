@@ -56,7 +56,8 @@ pipeline {
                             root: files[0].getPath(),
                             apiKeyId: "nuget_api_key",
                             skipDuplicate: false,
-                            workDirectory: "src/"
+                            workDirectory: "src/",
+                            source: "https://api.nuget.org/v3/index.json"
                         )
                     }
             }
