@@ -8,7 +8,13 @@ Small library for interacting with Local Storage from Blazor WASM.
 
 # NuGet
 
-*Coming soon..*
+[![NuGet Shield](https://img.shields.io/nuget/v/NullCode.WASM.LocalStorage?color=green)](https://www.nuget.org/packages/NullCode.WASM.LocalStorage/)
+
+You can install it via:
+
+```
+dotnet add package NullCode.WASM.LocalStorage
+```
 
 # Dependencies
 
